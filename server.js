@@ -6,15 +6,13 @@ const mongoose = require('mongoose');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-// = Middleware (pass everything through the logger first) ================================================
 	app.use(logger('dev'));
 	app.use(bodyParser.urlencoded({
 		extended: false
 	}));
-	app.use(express.static('public')); // (create a public folder and land there)
+	app.use(express.static('public')); 
 
-// = Database configuration ================================================
-	mongoose.connect('mongodb://localhost/mongoosescraper');
+	mongoose.connect('mongodb://localhost/ScrapeMongo');
 	var db = mongoose.connection;
 
 	db.on('error', function (err) {
@@ -27,9 +25,8 @@ const cheerio = require('cheerio');
 	const Note = require('./models/Note.js');
 	const Article = require('./models/Article.js');
 
-// = Routes ================================================================
 	app.get('/', function(req, res) {
-	  res.send(index.html); // sending the html file rather than rendering a handlebars file
+	  res.send(index.html); 
 	});
 
 app.get('/scrape', function(req, res) {
